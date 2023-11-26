@@ -22,3 +22,23 @@ function addThree(num) {
 console.log("Add 3 to 5: ", addThree(5));
 // usage with arrow functions
 var add10 = function (num) { return num + 10; };
+// a better way of writing arrow functions
+var add20 = function (num) { return num + 20; };
+// Test
+console.log("Add 20 to 5: ", add20(5));
+var colors = ["red", "green", "blue"];
+colors.map(function (color, index) {
+    console.log("color: ".concat(index + 1, " is ").concat(color));
+});
+// Return types in TS
+// void: This means that the function does not return anything
+function sayHello() {
+    console.log("Hello");
+}
+sayHello();
+// never: This means that the function does not return anything and it does not have an endpoint
+function throwError() {
+    throw Error("Error");
+}
+// Test
+throwError();

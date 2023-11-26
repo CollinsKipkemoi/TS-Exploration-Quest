@@ -28,4 +28,27 @@ console.log("Add 3 to 5: ", addThree(5));
 // usage with arrow functions
 let add10 = (num: number) => num + 10;
 
+// a better way of writing arrow functions
+let add20 = (num: number):number => {return num + 20};
+// Test
+console.log("Add 20 to 5: ", add20(5));
+
+let colors = ["red", "green", "blue"];
+colors.map((color, index)=>{
+console.log(`color: ${index + 1} is ${color}`)
+});
+
+// Return types in TS
+// void: This means that the function does not return anything
+function sayHello(): void{
+    console.log("Hello");
+}
+sayHello();
+// never: This means that the function does not return anything and it does not have an endpoint
+function throwError(): never{
+    throw Error("Error");
+}
+// Test
+//throwError();
+
 export {}
