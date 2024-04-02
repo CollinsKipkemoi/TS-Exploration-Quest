@@ -49,3 +49,46 @@ let student1 = {
 // The type of student1 is inferred from the value assigned to it
 // student1 = {name: 'John', grade: 'A'} // Error: Type 'string' is not assignable to type 'number'.
 let studentGrade = student1.grade; // Number
+//! Functions and types
+function add(a, b) {
+    return a + b;
+}
+// The return type of the function is a number
+let result = add(2, 3); // 5 which is a number
+const subtract = (a, b) => {
+    return a - b;
+};
+let result2 = subtract(5, 3); // 2 which is a number
+function addAll(nums) {
+    let sum = nums.reduce((initial, v) => initial + v, 0);
+    return sum;
+}
+console.log(addAll([1, 2, 3, 4, 5])); // 15
+//! Any type
+// This type allows us to assign any type to a variable
+let value;
+value = 1;
+value = 'Hello'; // This is correct
+value = true; // This is correct
+console.log(typeof value); // boolean
+let value2;
+//* If we do not specify the type of a variable, it is inferred to be of type any
+value2 = 1;
+console.log("Type of value2: " + typeof value2); // number
+value2 = 'Hello';
+console.log("Type of value2: " + typeof value2); // string
+value2 = {
+    name: 'John',
+    age: 22
+};
+console.log("Type of value2: " + typeof value2); // object
+//! Array of any type
+let arr = [1, 'Hello', true];
+arr.push({ name: 'John', age: 22 });
+console.log(arr); // [1, 'Hello', true, {name: 'John', age: 22}]
+//!Function with any type
+function addAny(a, b) {
+    return a + b;
+}
+console.log(addAny(2, 3)); // 5
+console.log(addAny('Hello', 'World')); // HelloWorld

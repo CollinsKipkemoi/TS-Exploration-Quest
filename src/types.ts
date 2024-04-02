@@ -25,7 +25,7 @@ console.log(variable) // 22
 
 // !Arrays and types
 let myArr: string[] = ['apples', 'pears', 'cherries'] // An array of strings
-let ages: number[] = [12,34,5,23]
+let ages: number[] = [12, 34, 5, 23]
 /*
 We cannot add values of different types to the array. For example, we cannot add a string values to the ages array
 */
@@ -40,7 +40,7 @@ console.log(thing)
 
 
 // !Objects and types
-let user: {firstName: string, age: number, isMale: boolean} = {
+let user: { firstName: string, age: number, isMale: boolean } = {
     age: 21,
     firstName: 'Doe',
     isMale: true
@@ -62,3 +62,53 @@ let student1 = {
 let studentGrade = student1.grade // Number
 
 
+//! Functions and types
+function add(a: number, b: number): number {
+    return a + b
+}
+// The return type of the function is a number
+let result = add(2, 3) // 5 which is a number
+const subtract = (a: number, b:number):number =>{
+    return a - b
+}
+let result2 = subtract(5, 3) // 2 which is a number
+
+function addAll(nums: number[]){
+    let sum = nums.reduce((initial, v) => initial + v, 0)
+    return sum
+}
+console.log(addAll([1, 2, 3, 4, 5])) // 15
+
+
+//! Any type
+// This type allows us to assign any type to a variable
+let value: any
+value = 1
+value = 'Hello' // This is correct
+value = true // This is correct
+console.log(typeof value) // boolean
+
+let value2
+//* If we do not specify the type of a variable, it is inferred to be of type any
+value2 = 1
+console.log("Type of value2: " + typeof value2) // number
+value2 = 'Hello'
+console.log("Type of value2: " + typeof value2) // string
+
+value2 = {
+    name: 'John',
+    age: 22
+}
+console.log("Type of value2: " + typeof value2) // object
+
+//! Array of any type
+let arr: any[] = [1, 'Hello', true]
+arr.push({name: 'John', age: 22})
+console.log(arr) // [1, 'Hello', true, {name: 'John', age: 22}]
+
+//!Function with any type
+function addAny(a: any,b: any): any {
+    return a + b
+}
+console.log(addAny(2, 3)) // 5
+console.log(addAny('Hello', 'World')) // HelloWorld
