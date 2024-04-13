@@ -66,17 +66,19 @@ let studentGrade = student1.grade // Number
 function add(a: number, b: number): number {
     return a + b
 }
+
 // The return type of the function is a number
 let result = add(2, 3) // 5 which is a number
-const subtract = (a: number, b:number):number =>{
+const subtract = (a: number, b: number): number => {
     return a - b
 }
 let result2 = subtract(5, 3) // 2 which is a number
 
-function addAll(nums: number[]){
+function addAll(nums: number[]) {
     let sum = nums.reduce((initial, v) => initial + v, 0)
     return sum
 }
+
 console.log(addAll([1, 2, 3, 4, 5])) // 15
 
 
@@ -89,7 +91,7 @@ value = true // This is correct
 console.log(typeof value) // boolean
 
 let value2
-//* If we do not specify the type of a variable, it is inferred to be of type any
+//* If we do not specify the type of variable, it is inferred to be of type any
 value2 = 1
 console.log("Type of value2: " + typeof value2) // number
 value2 = 'Hello'
@@ -107,8 +109,45 @@ arr.push({name: 'John', age: 22})
 console.log(arr) // [1, 'Hello', true, {name: 'John', age: 22}]
 
 //!Function with any type
-function addAny(a: any,b: any): any {
+function addAny(a: any, b: any): any {
     return a + b
 }
+
 console.log(addAny(2, 3)) // 5
 console.log(addAny('Hello', 'World')) // HelloWorld
+
+let arr1: string[] = ['Hello', 'World']
+let arr2: string[] = [...arr1, "Test"]
+console.log(arr2 == arr1) // false
+console.log(arr2 === arr1) // false
+
+function compareArrays(a: string[], b: string[]): boolean {
+    if (a.length !== b.length) {
+        return false
+    }
+
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] !== b[i]) {
+            return false
+        }
+    }
+    return true
+}
+compareArrays(arr1, arr2) ? console.log('Arrays are equal') : console.log('Arrays are not equal')
+
+let newArr: (string|number) [] = ['Hello', 1, 'World', 2]
+
+// !Tuples
+// *Tuples allow us to define an array with a fixed number of elements and types
+let person:[string, number, boolean] = [
+    'John',
+    22,
+    true
+]
+
+console.log("Array with 2 types: " + newArr);
+
+
+// !named tuples
+let std:[name: string, grade: number] = ['John', 4.5]
+console.log(std[0]) // John

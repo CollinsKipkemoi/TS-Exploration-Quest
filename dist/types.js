@@ -72,7 +72,7 @@ value = 'Hello'; // This is correct
 value = true; // This is correct
 console.log(typeof value); // boolean
 let value2;
-//* If we do not specify the type of a variable, it is inferred to be of type any
+//* If we do not specify the type of variable, it is inferred to be of type any
 value2 = 1;
 console.log("Type of value2: " + typeof value2); // number
 value2 = 'Hello';
@@ -92,3 +92,31 @@ function addAny(a, b) {
 }
 console.log(addAny(2, 3)); // 5
 console.log(addAny('Hello', 'World')); // HelloWorld
+let arr1 = ['Hello', 'World'];
+let arr2 = [...arr1, "Test"];
+console.log(arr2 == arr1); // false
+console.log(arr2 === arr1); // false
+function compareArrays(a, b) {
+    if (a.length !== b.length) {
+        return false;
+    }
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] !== b[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+compareArrays(arr1, arr2) ? console.log('Arrays are equal') : console.log('Arrays are not equal');
+let newArr = ['Hello', 1, 'World', 2];
+// !Tuples
+// *Tuples allow us to define an array with a fixed number of elements and types
+let person = [
+    'John',
+    22,
+    true
+];
+console.log("Array with 2 types: " + newArr);
+// !named tuples
+let std = ['John', 4.5];
+console.log(std[0]); // John
