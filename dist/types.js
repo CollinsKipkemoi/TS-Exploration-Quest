@@ -7,7 +7,7 @@ let student = "John"; // Here name is a string. Now we cannot assign any other t
 let age2 = 22; // Here age is a number. Now we cannot assign any other type to age.
 let isMale2 = false; // Here isMale is a boolean. Now we cannot assign any other type to isMale.
 let student2 = "Doe"; // Here name is a string. Now we cannot assign any other type to name.
-age2 = 23; // Error: Type 'string' is not assignable to type 'number'.
+age2 = Number('22'); // This is correct 
 //! Declaring variables with multiple types
 /*Note that the latest value assigned to the variable will be the type of the variable.
 */
@@ -37,6 +37,12 @@ let user = {
     firstName: 'Doe',
     isMale: true
 };
+let person3 = {
+    name: "Mark",
+    isMale: true,
+    age: 10
+};
+person3.isMale = false;
 console.log(user.firstName + ' is ' + user.age + ' years old');
 // If we try to assign a value of a different type to a property, we will get an error
 // user.age = '22' // Error: Type 'string' is not assignable to type 'number'.
@@ -120,3 +126,146 @@ console.log("Array with 2 types: " + newArr);
 // !named tuples
 let std = ['John', 4.5];
 console.log(std[0]); // John
+let myStr = "Hello";
+console.log(typeof myArr);
+let anyVar;
+anyVar = true;
+anyVar = 22;
+anyVar = "test";
+console.log(anyVar);
+// !default parameters 
+function greet(name = "Mark") {
+    return "Hello " + name;
+}
+console.log(greet("Nerd"));
+// !void return
+function printMessage() {
+    console.log("No value is returned");
+}
+printMessage();
+// !2-D arrays
+let matrix = [];
+matrix.push([1, 3, 5], [44, 5], [2, 1, 4]);
+console.log(matrix);
+// !function returning an object
+function returnObj() {
+    return {
+        age: 100,
+        isMale: false,
+        name: "Jane"
+    };
+}
+console.log(returnObj());
+function checkAnimal() {
+    return {
+        name: "Kangaroo",
+        color: "brown",
+        height: 200
+    };
+}
+console.log(checkAnimal());
+const lion = {
+    name: "Lion",
+    color: "Yellow",
+    height: 100
+};
+const isLion = (animal) => {
+    console.log(animal.name === "Lion" ? "It is a Lion" : "It is not a Lion");
+};
+isLion(lion);
+const user1 = {
+    name: "John",
+    age: 22,
+    email: "user1@mail.com"
+};
+console.log(user1.password); // undefined
+user1.password = "password";
+console.log(user1);
+const person1 = {
+    name: "John",
+    age: 22,
+    email: "example@mail.com"
+};
+let user2 = {
+    name: "John",
+    age: 22,
+    height: 200,
+    password: "password"
+};
+console.log(user2);
+// !Union types
+// *Union types allow us to define a variable that can have multiple types
+let value3 = "Hello";
+value3 = 22;
+console.log(value3);
+// !Literal types
+// *Literal types allow us to specify the exact value a variable can have
+let grade;
+grade = "A";
+// grade = "E" // Error: Type '"E"' is not assignable to type '"A" | "B" | "C" | "D"'.
+let isTrue;
+isTrue = true; // This is correct
+// isTrue = false // Error: Type 'false' is not assignable to type 'true'.
+// !Tuple types
+// *Tuple types allow us to define an array with a fixed number of elements and types. The order of the types must match the order of the elements in the array
+let person2 = ["John", 22, true];
+console.log(person2);
+// !Enums
+// *Enums allow us to define a set of named constants. By default, enums start at 0 and increment by 1 for each subsequent member unless you specify a different value
+var weatherConditions;
+(function (weatherConditions) {
+    weatherConditions["Sunny"] = "sunny";
+    weatherConditions["Rainy"] = "rainy";
+    weatherConditions["Cloudy"] = "cloudy";
+    weatherConditions["Snowy"] = "snowy";
+})(weatherConditions || (weatherConditions = {}));
+let todayWeather = weatherConditions.Sunny;
+console.log(todayWeather); // 0
+let addNums = (a, b) => {
+    return a + b;
+};
+console.log(addNums(2, 3));
+let student3 = {
+    name: "John",
+    age: 22,
+    email: "mail.hu",
+    grade: 4.5
+};
+console.log(student3);
+function exampleFun(value) {
+    if (typeof value === 'string') {
+        console.log(value.toUpperCase());
+    }
+    else {
+        console.log(value.toFixed(2));
+    }
+}
+exampleFun("hello");
+exampleFun(22.3333);
+class Dog {
+    bark() {
+        console.log("Dog barks");
+    }
+}
+class Cat {
+    meow() {
+        console.log("Cat meows");
+    }
+}
+function animalSound(animal) {
+    if (animal instanceof Dog) {
+        animal.bark();
+    }
+    else {
+        animal.meow();
+    }
+}
+animalSound(new Dog());
+animalSound(new Cat());
+let manager1 = {
+    name: "John",
+    age: 22,
+    position: "Manager",
+    department: "HR"
+};
+console.log(manager1);

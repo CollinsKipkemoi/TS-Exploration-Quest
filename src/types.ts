@@ -9,7 +9,7 @@ let age2 = 22;  // Here age is a number. Now we cannot assign any other type to 
 let isMale2 = false; // Here isMale is a boolean. Now we cannot assign any other type to isMale.
 let student2 = "Doe"; // Here name is a string. Now we cannot assign any other type to name.
 
-age2 = 23; // Error: Type 'string' is not assignable to type 'number'.
+age2 = Number('22') // This is correct 
 
 //! Declaring variables with multiple types
 
@@ -46,6 +46,13 @@ let user: { firstName: string, age: number, isMale: boolean } = {
     isMale: true
 }
 
+let person3: { name: string, age: number, isMale: boolean } = {
+    name: "Mark",
+    isMale: true,
+    age: 10
+}
+
+person3.isMale = false
 console.log(user.firstName + ' is ' + user.age + ' years old')
 // If we try to assign a value of a different type to a property, we will get an error
 // user.age = '22' // Error: Type 'string' is not assignable to type 'number'.
@@ -105,7 +112,7 @@ console.log("Type of value2: " + typeof value2) // object
 
 //! Array of any type
 let arr: any[] = [1, 'Hello', true]
-arr.push({name: 'John', age: 22})
+arr.push({ name: 'John', age: 22 })
 console.log(arr) // [1, 'Hello', true, {name: 'John', age: 22}]
 
 //!Function with any type
@@ -135,11 +142,11 @@ function compareArrays(a: string[], b: string[]): boolean {
 }
 compareArrays(arr1, arr2) ? console.log('Arrays are equal') : console.log('Arrays are not equal')
 
-let newArr: (string|number) [] = ['Hello', 1, 'World', 2]
+let newArr: (string | number)[] = ['Hello', 1, 'World', 2]
 
 // !Tuples
 // *Tuples allow us to define an array with a fixed number of elements and types
-let person:[string, number, boolean] = [
+let person: [string, number, boolean] = [
     'John',
     22,
     true
@@ -149,5 +156,293 @@ console.log("Array with 2 types: " + newArr);
 
 
 // !named tuples
-let std:[name: string, grade: number] = ['John', 4.5]
+let std: [name: string, grade: number] = ['John', 4.5]
 console.log(std[0]) // John
+
+let myStr = "Hello"
+console.log(typeof myArr);
+
+let anyVar: string | boolean | number
+anyVar = true
+anyVar = 22
+anyVar = "test"
+console.log(anyVar);
+
+
+// !default parameters 
+function greet(name: string = "Mark"): string {
+    return "Hello " + name
+}
+
+console.log(greet("Nerd"));
+
+
+// !void return
+function printMessage(): void {
+    console.log("No value is returned");
+
+}
+
+printMessage()
+
+
+// !2-D arrays
+let matrix: number[][] = []
+matrix.push([1, 3, 5], [44, 5], [2, 1, 4])
+console.log(matrix);
+
+
+
+// !function returning an object
+function returnObj(): { name: string, age: number, isMale: boolean } {
+    return {
+        age: 100,
+        isMale: false,
+        name: "Jane"
+    }
+}
+
+console.log(returnObj());
+
+
+
+// !Type Alias
+type Animal = {
+    name: string,
+    color: string,
+    height: number
+}
+
+function checkAnimal(): Animal {
+    return {
+        name: "Kangaroo",
+        color: "brown",
+        height: 200
+    }
+}
+
+console.log(checkAnimal());
+
+
+const lion: Animal = {
+    name: "Lion",
+    color: "Yellow",
+    height: 100
+}
+
+const isLion = (animal: Animal): void => {
+    console.log(animal.name === "Lion" ? "It is a Lion" : "It is not a Lion")
+}
+
+isLion(lion)
+
+
+// !Optional properties
+
+// *Optional properties are properties that may or may not be present in an object
+
+type user = {
+    name: string,
+    age: number,
+    email: string,
+    password?: string
+}
+
+const user1: user = {
+    name: "John",
+    age: 22,
+    email: "user1@mail.com"
+}
+
+console.log(user1.password); // undefined
+user1.password = "password"
+console.log(user1)
+
+
+// !Readonly properties
+// *Readonly properties are properties that cannot be changed once they are set
+type person = {
+    name: string,
+    age: number,
+    readonly email: string
+}
+
+const person1: person = {
+    name: "John",
+    age: 22,
+    email: "example@mail.com"
+}
+
+// person1.email = "newmail.com" // Error: Cannot assign to 'email' because it is a read-only property.
+
+
+// !Intersection types
+// *Intersection types allow us to combine multiple types into a single type. It is denoted by the & symbol
+
+type A = {
+    name: string,
+    age: number
+    readonly height: number
+}
+
+type B = {
+    email?: string,
+    password: string
+}
+
+type C = A & B
+
+let user2: C = {
+    name: "John",
+    age: 22,
+    height: 200,
+    password: "password"
+}
+
+console.log(user2);
+
+
+// !Union types
+// *Union types allow us to define a variable that can have multiple types
+
+let value3: string | number = "Hello"
+value3 = 22
+
+console.log(value3);
+
+
+// !Literal types
+// *Literal types allow us to specify the exact value a variable can have
+
+let grade: "A" | "B" | "C" | "D"
+grade = "A"
+// grade = "E" // Error: Type '"E"' is not assignable to type '"A" | "B" | "C" | "D"'.
+
+let isTrue: true
+isTrue = true // This is correct
+// isTrue = false // Error: Type 'false' is not assignable to type 'true'.
+
+
+// !Tuple types
+// *Tuple types allow us to define an array with a fixed number of elements and types. The order of the types must match the order of the elements in the array
+let person2: [string, number, boolean] = ["John", 22, true]
+console.log(person2);
+
+
+// !Enums
+// *Enums allow us to define a set of named constants. By default, enums start at 0 and increment by 1 for each subsequent member unless you specify a different value
+
+enum weatherConditions {
+    Sunny = 'sunny',
+    Rainy = 'rainy',
+    Cloudy = 'cloudy',
+    Snowy = 'snowy'
+}
+
+let todayWeather: weatherConditions = weatherConditions.Sunny
+console.log(todayWeather); // 0
+
+// !Interfaces
+// *Interfaces allow us to define the structure of an object. They can be used to define the properties and methods that an object must have
+
+interface Person {
+    name: string,
+    age: number,
+    email: string
+}
+
+interface mathOperation {
+    (a: number, b: number): number
+}
+
+let addNums: mathOperation = (a, b) => {
+    return a + b
+}
+
+console.log(addNums(2, 3));
+
+// !Extending interfaces
+// *Interfaces can extend other interfaces to inherit their properties and methods
+
+interface Student extends Person {
+    grade: number
+}
+
+let student3: Student = {
+    name: "John",
+    age: 22,
+    email: "mail.hu",
+    grade: 4.5
+}
+
+console.log(student3)
+
+
+// !Type Narrowing
+// *Type narrowing allows us to narrow down the type of a variable within a block of code
+type myType = string | number
+
+function exampleFun(value: myType): void {
+    if (typeof value === 'string') {
+        console.log(value.toUpperCase())
+    }
+    else {
+        console.log(value.toFixed(2))
+    }
+}
+
+exampleFun("hello")
+exampleFun(22.3333)
+
+
+class Dog {
+    bark(): void {
+        console.log("Dog barks")
+    }
+}
+
+class Cat {
+    meow(): void {
+        console.log("Cat meows")
+    }
+}
+
+type Pet = Dog | Cat
+
+function animalSound(animal: Pet) {
+    if (animal instanceof Dog) {
+        animal.bark()
+    }
+    else {
+        animal.meow()
+    }
+}
+
+animalSound(new Dog())
+animalSound(new Cat())
+
+
+// !Type intersection
+
+type manager = {
+    name: string,
+    age: number,
+    position: string
+}
+
+type Employee = {
+    name: string,
+    age: number,
+    department: string
+}
+
+type managerWithEmployee = manager & Employee
+
+let manager1: managerWithEmployee = {
+    name: "John",
+    age: 22,
+    position: "Manager",
+    department: "HR"
+}
+
+console.log(manager1);
