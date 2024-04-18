@@ -4,7 +4,7 @@ This is a simple overview of TypeScript, a superset of JavaScript that adds stat
 
 ## Table of Contents
 (i) Basic Types
-(ii) Interfaces
+(ii) Inferences
 (iii) Variables
 (iv) Functions
 (v) Objects
